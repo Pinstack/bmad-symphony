@@ -16,7 +16,7 @@ tracker:
 polling:
   interval_ms: 5000
 workspace:
-  root: .symphony/workspaces
+  root: /Users/raedmund/Projects/bmad+symphony/.symphony/workspaces
 hooks:
   after_create: |
     set -eu
@@ -33,7 +33,7 @@ agent:
   max_turns: 20
   max_retry_backoff_ms: 300000
 codex:
-  command: codex --config shell_environment_policy.inherit=all --config model_reasoning_effort=xhigh --model gpt-5.3-codex app-server
+  command: codex --config shell_environment_policy.inherit=all --config model_reasoning_effort=high --model gpt-5.3-codex app-server
   approval_policy: never
   thread_sandbox: workspace-write
   turn_sandbox_policy:
