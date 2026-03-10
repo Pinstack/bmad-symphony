@@ -2,20 +2,25 @@
 
 ## Layering
 
-This repository treats BMAD and Symphony as complementary layers:
+This repository treats BMAD and Symphony as complementary layers inside a single project-repo setup:
 
 | Layer | Responsibility |
 | ---- | ------- |
-| BMAD | Defines planning artifacts, stories, acceptance criteria, and handoff points. |
+| BMAD | Defines planning artifacts, stories, acceptance criteria, and handoff points inside the project repo. |
 | Linear | Holds the dispatchable issue that points at one BMAD-defined unit of work. |
 | Symphony | Polls Linear, creates isolated workspaces, and launches Codex runs. |
 | Codex | Executes the current issue inside the workspace and validates the requested change. |
 
 BMAD remains upstream. Symphony should not invent scope, rewrite planning artifacts, or turn one issue into a multi-phase workflow on its own.
 
+In the recommended starting model, this same repo is both:
+
+- the place where BMAD artifacts live, and
+- the repo Symphony clones into isolated per-issue workspaces.
+
 ## Dispatch-ready issue contract
 
-Each Symphony-dispatchable Linear issue should represent exactly one BMAD execution unit.
+Each Symphony-dispatchable Linear issue should represent exactly one BMAD execution unit in this project repo.
 
 Minimum contract:
 

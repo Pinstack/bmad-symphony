@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BMAD Symphony Todo</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="hero">
+        <p class="eyebrow">BMAD + Symphony Dry Run</p>
+        <h1>Todo App Testbed</h1>
+        <p class="lede">
+          A tiny single-page app that is small enough for a first Symphony run,
+          but real enough to exercise BMAD planning artifacts, Linear issues,
+          and Codex execution in isolated workspaces.
+        </p>
+      </section>
+
+      <section class="panel composer-panel">
+        <form id="todo-form" class="todo-form">
+          <label class="field">
+            <span>Task</span>
+            <input
+              id="todo-input"
+              name="todo"
+              type="text"
+              maxlength="120"
+              placeholder="Ship the first dry run"
+              required
+            />
+          </label>
+          <button type="submit">Add Task</button>
+        </form>
+      </section>
+
+      <section class="grid">
+        <section class="panel">
+          <div class="section-head">
+            <h2>Todo List</h2>
+            <button id="clear-completed" class="ghost-button" type="button">
+              Clear Completed
+            </button>
+          </div>
+          <ul id="todo-list" class="todo-list" aria-live="polite"></ul>
+          <p id="empty-state" class="empty-state">
+            No tasks yet. Add one above to start the dry run.
+          </p>
+        </section>
+
+        <aside class="panel stats-panel">
+          <h2>Run Notes</h2>
+          <dl class="stats-list">
+            <div>
+              <dt>Total</dt>
+              <dd id="total-count">0</dd>
+            </div>
+            <div>
+              <dt>Open</dt>
+              <dd id="open-count">0</dd>
+            </div>
+            <div>
+              <dt>Completed</dt>
+              <dd id="completed-count">0</dd>
+            </div>
+          </dl>
+
+          <div class="note-card">
+            <h3>Suggested first stories</h3>
+            <ol>
+              <li>Add tasks and persist them locally.</li>
+              <li>Toggle completion state.</li>
+              <li>Delete or clear completed tasks.</li>
+            </ol>
+          </div>
+        </aside>
+      </section>
+    </main>
+
+    <template id="todo-item-template">
+      <li class="todo-item">
+        <label class="todo-toggle">
+          <input class="todo-checkbox" type="checkbox" />
+          <span class="todo-text"></span>
+        </label>
+        <button class="ghost-button delete-button" type="button">Delete</button>
+      </li>
+    </template>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

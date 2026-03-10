@@ -44,7 +44,7 @@ codex:
   stall_timeout_ms: 300000
 ---
 
-You are working on Linear ticket `{{ issue.identifier }}` for the `bmad+symphony` integration repository.
+You are working on Linear ticket `{{ issue.identifier }}` for the `bmad+symphony` project repository.
 
 {% if attempt %}
 Continuation context:
@@ -93,7 +93,7 @@ Before changing code:
 1. Confirm the issue is still in an active state.
 2. Identify the single BMAD artifact, issue section, or validation block that defines scope.
 3. Restate the target behavior or failure mode in concrete terms.
-4. Keep the task scoped to the current BMAD-defined unit of work.
+4. Keep the task scoped to the current BMAD-defined unit of work in this project repo.
 
 During execution:
 

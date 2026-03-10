@@ -1,15 +1,28 @@
 # bmad+symphony
 
-This repository is the policy and documentation layer for running OpenAI Symphony against BMAD-governed work. It does not vendor the Symphony runtime. Instead, it version-controls the repo-local `WORKFLOW.md`, the workspace bootstrap hook, and the operating docs that tell Symphony how to execute BMAD-shaped Linear issues.
+This repository is a BMAD-enabled project testbed for running OpenAI Symphony against BMAD-governed work. Symphony stays external as the long-running orchestrator. This repo holds the app-facing `WORKFLOW.md`, the workspace bootstrap hook, and the BMAD artifacts and docs that define what Symphony should execute.
 
 ## What lives here
 
-- `WORKFLOW.md`: the Symphony contract for Linear polling, workspace creation, Codex runtime settings, and the execution prompt.
+- `WORKFLOW.md`: the repo-local Symphony contract for Linear polling, workspace creation, Codex runtime settings, and the execution prompt.
 - `scripts/after_create.sh`: the idempotent workspace bootstrap check that runs after a new issue workspace is cloned.
 - `docs/symphony-bmad-integration.md`: the BMAD-to-Symphony operating model.
 - `docs/linear-state-map.md`: the Linear state contract for this repo.
+- `app/`: the tiny browser-based todo app used for the first dry run.
 - `_bmad/`: BMAD module assets and workflows.
 - `_bmad-output/`: generated planning and implementation artifacts used as execution context.
+
+## Repo model
+
+Use this setup as follows:
+
+- this repo = the project repo Symphony clones into per-issue workspaces,
+- BMAD artifacts stay in this repo and define the planning and execution context,
+- Symphony runs outside the repo and polls Linear,
+- Linear issues point to BMAD-defined units of work,
+- Codex executes the issue inside a cloned workspace of this repo.
+
+You do not need a separate "Symphony repo" for a first dry run. The simpler setup is: project repo + external Symphony runtime.
 
 ## Prerequisites
 
@@ -54,6 +67,8 @@ export SYMPHONY_SOURCE_REF=main
 3. Leave `tracker.api_key` as `$LINEAR_API_KEY` unless you have a different secret-loading policy.
 4. Keep `workspace.root` inside `.symphony/workspaces` unless you intentionally want workspaces elsewhere.
 5. If you install landing automation later, decide whether to enable the optional `Merging` state described in [docs/linear-state-map.md](/Users/raedmund/Projects/bmad+symphony/docs/linear-state-map.md).
+
+For the first dry run, use the tiny todo app in `app/` and the accompanying BMAD execution artifact in [_bmad-output/implementation-artifacts/todo-app-dry-run.md](/Users/raedmund/Projects/bmad+symphony/_bmad-output/implementation-artifacts/todo-app-dry-run.md).
 
 ## Environment variables
 
@@ -135,3 +150,21 @@ Backlog -> Todo -> In Progress -> Human Review -> Done
 `Human Review` is intentionally a paused state and is not dispatchable. `Merging` is documented as an optional later extension once repo-local landing automation exists.
 
 See [docs/linear-state-map.md](/Users/raedmund/Projects/bmad+symphony/docs/linear-state-map.md) for the full contract and [docs/symphony-bmad-integration.md](/Users/raedmund/Projects/bmad+symphony/docs/symphony-bmad-integration.md) for the BMAD execution model.
+
+## Recommended first dry run
+
+1. Use the baseline app in `app/`.
+2. Create Linear issues from [_bmad-output/implementation-artifacts/todo-app-dry-run.md](/Users/raedmund/Projects/bmad+symphony/_bmad-output/implementation-artifacts/todo-app-dry-run.md).
+3. Run Symphony externally with this repo's [WORKFLOW.md](/Users/raedmund/Projects/bmad+symphony/WORKFLOW.md).
+4. Verify that Symphony clones this repo into a workspace, executes one issue, and stops at `Human Review`.
+
+## Run the app locally
+
+Because the app is static HTML, the simplest local run is:
+
+```bash
+cd app
+python3 -m http.server 4173
+```
+
+Then open [http://localhost:4173](http://localhost:4173).
