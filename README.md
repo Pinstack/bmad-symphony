@@ -66,7 +66,7 @@ export SYMPHONY_SOURCE_REF=main
 2. Change `tracker.project_slug` from `bmad-symphony` to the actual Linear project slug you want Symphony to poll.
 3. Leave `tracker.api_key` as `$LINEAR_API_KEY` unless you have a different secret-loading policy.
 4. Keep `workspace.root` inside `.symphony/workspaces` unless you intentionally want workspaces elsewhere.
-5. If you install landing automation later, decide whether to enable the optional `Merging` state described in [docs/linear-state-map.md](/Users/raedmund/Projects/bmad+symphony/docs/linear-state-map.md).
+5. The workflow is already aligned to your current `MES` team statuses and uses `In Review` as the human handoff state.
 
 For the first dry run, use the tiny todo app in `app/` and the accompanying BMAD execution artifact in [_bmad-output/implementation-artifacts/todo-app-dry-run.md](/Users/raedmund/Projects/bmad+symphony/_bmad-output/implementation-artifacts/todo-app-dry-run.md).
 
@@ -147,7 +147,7 @@ Backlog -> Todo -> In Progress -> Human Review -> Done
                      Rework <---------
 ```
 
-`Human Review` is intentionally a paused state and is not dispatchable. `Merging` is documented as an optional later extension once repo-local landing automation exists.
+`In Review` is intentionally a paused state and is not dispatchable. `Merging` is documented as an optional later extension once repo-local landing automation exists.
 
 See [docs/linear-state-map.md](/Users/raedmund/Projects/bmad+symphony/docs/linear-state-map.md) for the full contract and [docs/symphony-bmad-integration.md](/Users/raedmund/Projects/bmad+symphony/docs/symphony-bmad-integration.md) for the BMAD execution model.
 
@@ -156,7 +156,7 @@ See [docs/linear-state-map.md](/Users/raedmund/Projects/bmad+symphony/docs/linea
 1. Use the baseline app in `app/`.
 2. Create Linear issues from [_bmad-output/implementation-artifacts/todo-app-dry-run.md](/Users/raedmund/Projects/bmad+symphony/_bmad-output/implementation-artifacts/todo-app-dry-run.md).
 3. Run Symphony externally with this repo's [WORKFLOW.md](/Users/raedmund/Projects/bmad+symphony/WORKFLOW.md).
-4. Verify that Symphony clones this repo into a workspace, executes one issue, and stops at `Human Review`.
+4. Verify that Symphony clones this repo into a workspace, executes one issue, and stops at `In Review`.
 
 ## Run the app locally
 

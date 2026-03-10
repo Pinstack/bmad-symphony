@@ -48,8 +48,8 @@ Recommended issue description sections:
 
 - Planning work stays human-driven unless the issue explicitly requests a BMAD planning artifact update.
 - Execution work starts only when the issue is already scoped tightly enough for unattended implementation.
-- `Human Review` is the primary handoff state from Symphony back to a person.
-- `Rework` is the only review loop state enabled for further unattended execution.
+- `In Review` is the primary handoff state from Symphony back to a person.
+- For this first dry run, reviewer-requested changes should be moved back to `In Progress` instead of using a separate `Rework` status.
 
 ## What stays upstream
 

@@ -9,8 +9,7 @@ This repository uses a deliberately small Linear state machine for Symphony.
 | Backlog | No | not ready for unattended work | human planning only |
 | Todo | Yes | queued execution work | must already have clear scope and validation |
 | In Progress | Yes | active execution underway | normal running state |
-| Rework | Yes | review feedback requires another execution pass | use only after human review requests changes |
-| Human Review | No | waiting for a person to review the completed run | Symphony must stop dispatching here |
+| In Review | No | waiting for a person to review the completed run | Symphony must stop dispatching here |
 | Done | No | completed | terminal |
 | Closed | No | completed or administratively closed | terminal |
 | Cancelled / Canceled | No | intentionally stopped | terminal |
@@ -19,15 +18,15 @@ This repository uses a deliberately small Linear state machine for Symphony.
 ## Default lifecycle
 
 ```text
-Backlog -> Todo -> In Progress -> Human Review -> Done
+Backlog -> Todo -> In Progress -> In Review -> Done
                         ^             |
                         |             v
-                     Rework <---------
+                  back to In Progress
 ```
 
-## Why `Human Review` is non-active
+## Why `In Review` is non-active
 
-The Symphony runtime is a scheduler and runner, not the final authority on acceptance. Once validation is complete, the run should hand off to a person. Keeping `Human Review` outside `tracker.active_states` prevents accidental re-dispatch while the reviewer is still deciding.
+The Symphony runtime is a scheduler and runner, not the final authority on acceptance. Once validation is complete, the run should hand off to a person. Keeping `In Review` outside `tracker.active_states` prevents accidental re-dispatch while the reviewer is still deciding.
 
 ## Why `Merging` is not enabled yet
 

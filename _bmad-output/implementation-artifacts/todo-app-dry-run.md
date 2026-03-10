@@ -85,4 +85,4 @@ The dry run is successful when:
 1. Symphony clones this repo into a workspace,
 2. one Linear issue tied to this document is executed,
 3. the change is validated,
-4. the issue stops at `Human Review`.
+4. the issue stops at `In Review`.

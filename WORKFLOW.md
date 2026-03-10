@@ -3,11 +3,10 @@ tracker:
   kind: linear
   endpoint: https://api.linear.app/graphql
   api_key: $LINEAR_API_KEY
-  project_slug: "bmad-symphony"
+  project_slug: "bmad-symphony-todo-dry-run-17a29d393f9f"
   active_states:
     - Todo
     - In Progress
-    - Rework
   terminal_states:
     - Closed
     - Cancelled
@@ -83,8 +82,8 @@ Operating rules:
 
 Execution boundaries:
 
-- Allowed active states in this workflow are `Todo`, `In Progress`, and `Rework`.
-- `Human Review` is a pause/handoff state and must not be re-dispatched.
+- Allowed active states in this workflow are `Todo` and `In Progress`.
+- `In Review` is the pause/handoff state and must not be re-dispatched.
 - `Merging` is intentionally disabled in this repo until landing automation is installed.
 - `Done`, `Closed`, `Cancelled`, `Canceled`, and `Duplicate` are terminal.
 
@@ -100,7 +99,7 @@ During execution:
 1. Move `Todo` to `In Progress` when active work begins.
 2. Keep issue notes, validation evidence, and acceptance criteria aligned with the actual work.
 3. If review uncovers missing planning context, create or request a BMAD planning follow-up instead of expanding scope.
-4. Move the issue to `Human Review` only after the documented validation passes.
+4. Move the issue to `In Review` only after the documented validation passes.
 
 Validation rules:
 
